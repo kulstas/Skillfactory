@@ -3,7 +3,7 @@
 # Студент: Кулагин Станислав
 # Поток: FWP_123
 
-# Создание игрового поля
+# Инициализация игрового поля
 area = [
     ["", "", ""],
     ["", "", ""],
@@ -18,33 +18,37 @@ if marker1 == "x":
 elif marker1 == "o":
     marker2 = "x"
 else:
-    print("Увы, я не знаю такого маркера :(")
+    print("Увы, я не знаю такого маркера =(")
     marker1 = input("Крестик(Х) или Нолик(О)?: ").lower()
 
-print(f"Вы играете — {marker1}, аппонент играет — {marker2}")
+print(f"Вы играете — {marker1}, аппонент играет — {marker2} \n")
 
-# Проверка ввода координаты хода
+# Ввод координаты
 def input_step(marker=marker1):
-    xy = str(input(f"Введите координату для ({marker}): "))
+    xy = str(input(f"Введите координату для ({marker}) — в формате ХY: "))
 
-    if not xy or len(xy) != 2 or not xy.isdigit():
-        print("Ошибочка ¯\_(ツ)_/¯ Попробуйте снова...")
-        input_step()
-    else:
-        x = int(xy[0])
-        y = int(xy[1])
-        if 0 > x > 2:
+    # Проверка правильности координаты
+    if xy and len(xy) == 2 and xy.isdigit():
+        x, y = int(xy[0]), int(xy[1])
+
+        if x > 2:
             print("Неверное значение Х")
             return input_step()
-        if 0 > y > 2:
+        elif y > 2:
             print("Неверное значение Y")
             return input_step()
-        print(f"Координаты: X — {x}, Y — {y} \n")
-        next_step(x, y, marker)
+        else:
+            print(f"Координаты: X — {x}, Y — {y} \n")
+            check_step(x, y, marker)
+    else:
+        print("Ошибочка ¯\_(ツ)_/¯ Попробуйте снова...")
+        return input_step()
 
 
-# Функция проверки каждого шага
-def next_step(x, y, marker):
+# Проверка каждого шага
+def check_step(x, y, marker):
+
+    # Установка маркера по заданной координате
     if area[y][x] == "":
         area[y][x] = marker
     else:
