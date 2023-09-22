@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from .views import PostsList, PostDetail
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path("admin/", admin.site.urls),
-    path("pages/", include("django.contrib.flatpages.urls"))
+    path('admin/', admin.site.urls),
+    path('pages/', include("django.contrib.flatpages.urls")),
+    path('oshibki-kotlov/', PostsList.as_view()),
+    path('oshibki-kotlov/<int:id>', PostDetail.as_view()),
 ]
 

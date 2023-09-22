@@ -45,12 +45,28 @@ class Author(models.Model):
 class Category(models.Model):
     category_name = models.CharField(max_length=64, unique=True)
 
+    def __str__(self):
+        return self.category_name.title()
+
 
 class Post(models.Model):
-    post_author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    post_category = models.ManyToManyField(Category, through='PostCategory')
+    post_author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE
+    )
 
-    post_title = models.CharField(max_length=32, db_index=True)
+    post_category = models.ManyToManyField(
+        Category,
+        through='PostCategory',
+        related_name='posts'
+    )
+
+    post_title = models.CharField(
+        max_length=56,
+        db_index=True,
+        unique=True
+    )
+
     post_text = models.TextField()
     post_date = models.DateField(auto_now_add=True)
     post_rating = models.SmallIntegerField(default=0)
@@ -76,6 +92,10 @@ class Post(models.Model):
     # возвращает начало статьи
     def preview(self):
         return self.post_text[0:124] + "..."
+
+    # формат вывода объекта на фронтенде
+    def __str__(self):
+        return f'{self.post_title.title()}: {self.post_text[:20]}'
 
 
 class PostCategory(models.Model):
