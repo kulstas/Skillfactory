@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# Импортируем созданное нами представление
-from .views import ProductsList
+
+# Импортируем созданные нами представления
+from .views import ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,5 +28,10 @@ urlpatterns = [
     # Т.к. наше объявленное представление является классом,
     # а Django ожидает функцию, нам надо представить этот класс в виде view.
     # Для этого вызываем метод as_view.
-    path('', ProductsList.as_view()),
+    path('', ProductsList.as_view(), name='product_list'),
+    path('<int:pk>', ProductDetail.as_view(), name='product_detail'),
+    path('create/', ProductCreate.as_view(), name='product_create'),
+    path('<int:pk>/edit/', ProductUpdate.as_view(), name='product_update'),
+    path('<int:pk>/delete/', ProductDelete.as_view(), name='product_delete'),
 ]
+

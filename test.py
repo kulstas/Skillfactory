@@ -16,24 +16,16 @@ import re
 # print(time_out)
 # print(seconds)
 
-# t = "Нехороший человек — редиска или полный чудак!"
-t = 1
+from django.http import HttpResponse
 
-# @register.filter()
-def censor(text):
-    if isinstance(text, str):
-        # список нежелательных слов
-        cens_list = ['редиска', 'чудак']
+def multiply(request):
+    number = request.GET.get('number')
+    multiplier = request.GET('multiplier')
 
-        filter_text = re.split(r"\W", text)
-        for word in filter_text:
-            if word in cens_list:
-                cens_word = word[0] + '*' * (len(word) - 1)
-                text = text.replace(word, cens_word)
-        return text
-    else:
-        print(f'Переменная {text} не может быть обработана, так как не является строкой :(')
+    try:
+        result = int(number) * int(multiplier)
+        html = f"<html><body>{number}*{multiplier}={result}</body></html>"
+    except (ValueError, TypeError):
+        html = f"<html><body>Invalid input.</body></html>"
 
-
-
-print(censor(t))
+    return HttpResponse(html)
