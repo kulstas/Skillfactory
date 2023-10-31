@@ -18,8 +18,7 @@
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/Django/moykotel/templates" />
-        <option value="$MODULE_DIR$/Django/moykotel/templates/flatpages" />
+        <option value="$MODULE_DIR$/Django/skillfactory/templates" />
       </list>
     </option>
   </component>
