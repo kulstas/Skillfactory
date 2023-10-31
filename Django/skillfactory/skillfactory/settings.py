@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# В данный раздел добавьте 3 обязательных приложения allauth
+# и одно, которое отвечает за выход через Yandex
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -39,15 +41,18 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.flatpages",
+    "django_apscheduler",
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.yandex',
+
     "fpages",
     "mc_donalds",
     "simpleapp",
     "django_filters",
     "accounts",
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.yandex',
 ]
 
 SITE_ID = 1
@@ -66,10 +71,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "skillfactory.urls"
 
+# в context_processors у вас должен быть
+# 'django.template.context_processors.request'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates/skillfactory/"), ],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,6 +90,7 @@ TEMPLATES = [
     },
 ]
 
+# Этого раздела может не быть, добавьте его в указанном виде.
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -145,5 +153,30 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+
+# Указали форму для дополнительной обработки регистрации пользователя
 ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
+
+# Настройки почты
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'stusik@bk.ru'
+EMAIL_HOST_PASSWORD = 'vg4NqsXZqf3KPqmenKxc'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
+MANAGERS = (
+    ('test', 'kulagin@alltrade.biz'),
+)
+
+ADMINS = (
+    ('admin', 'kulstas@gmail.com'),
+)

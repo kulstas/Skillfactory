@@ -6,10 +6,14 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.db.models import Exists, OuterRef
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
 
 from datetime import datetime
 
-from .models import Product
+from .models import Product, Subscriptions, Category
 from .forms import ProductForm
 from .filters import ProductFilter
 
@@ -21,7 +25,7 @@ class ProductsList(ListView):
     ordering = 'name'
     # Указываем имя шаблона, в котором будут все инструкции о том,
     # как именно пользователю должны быть показаны наши объекты
-    template_name = 'products.html'
+    template_name = 'skillfactory/products.html'
     # Это имя списка, в котором будут лежать все объекты.
     # Его надо указать, чтобы обратиться к списку объектов в html-шаблоне.
     context_object_name = 'products'
@@ -53,7 +57,7 @@ class ProductDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Product
     # Используем другой шаблон — product.html
-    template_name = 'product.html'
+    template_name = 'skillfactory/product.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'product'
 
@@ -84,7 +88,7 @@ class ProductCreate(PermissionRequiredMixin, CreateView):
     # модель товаров
     model = Product
     # и новый шаблон, в котором используется форма.
-    template_name = 'product_edit.html'
+    template_name = 'skillfactory/product_edit.html'
 
 
 # Добавляем представление для изменения товара.
@@ -92,12 +96,44 @@ class ProductUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = ('simpleapp.change_product')
     form_class = ProductForm
     model = Product
-    template_name = 'product_edit.html'
+    template_name = 'skillfactory/product_edit.html'
 
 
 # Добавляем представление для удаления товара.
 class ProductDelete(PermissionRequiredMixin, DeleteView):
-    permission_required = ('simpleapp.change.product')
+    permission_required = ('simpleapp.delete_product')
     model = Product
-    template_name = 'product_delete.html'
+    template_name = 'skillfactory/product_delete.html'
     success_url = reverse_lazy('product_list')
+
+@login_required
+@csrf_protect
+def subscriptions(request):
+    if request.method == 'POST':
+        category_id = request.POST.get('category_id')
+        category = Category.objects.get(id=category_id)
+        action = request.POST.get('action')
+
+        if action == 'subscribe':
+            Subscriptions.objects.create(user=request.user, category=category)
+        elif action == 'unsubscribe':
+            Subscriptions.objects.filter(
+                user=request.user,
+                category=category,
+            ).delete()
+
+    categories_with_subscriptions = Category.objects.annotate(
+        user_subscribed=Exists(
+            Subscriptions.objects.filter(
+                user=request.user,
+                category=OuterRef('pk'),
+            )
+        )
+    ).order_by('name')
+
+    return render(
+        request,
+        'skillfactory/subscriptions.html',
+        {'categories': categories_with_subscriptions},
+    )
+
