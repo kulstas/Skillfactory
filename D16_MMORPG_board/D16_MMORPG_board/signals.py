@@ -40,10 +40,3 @@ def reply_update_handler(sender, instance, created, **kwargs):
                 fail_silently=False,
             )
 
-# @receiver(post_save, sender=User)
-# def create_or_update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-#     else:
-#         instance.profile.save()
-
