@@ -1,0 +1,52 @@
+{% extends 'D16_MMORPG_board/default.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+{% include 'D16_MMORPG_board/_action.html' %}
+{% if ads_list %}
+{#{% include 'D16_MMORPG_board/_post_header.html' %}#}
+<div class="community-posts-wrapper bb-radius">
+    {% for ad in ads_list %}
+    <div class="community-post style-two docly richard bug">
+        <div class="post-content">
+            <div class="author-avatar">
+                <img src="{% get_media_prefix %}{{ ad.ad_author.profile.user_avatar }}" alt="community post">
+            </div>
+            <div class="entry-content">
+                <h3 class="post-title">
+                    <a href="{% url 'ad_detail' ad.pk %}">{{ ad.ad_title }}</a>
+                </h3>
+                {% if ad.ad_status is False %}
+                    <span class="com-featured"><i class="icon_check"></i></span>
+                {% endif %}
+                <ul class="meta">
+                    <li>
+                        <a href="/category/{{ ad.ad_category_id }}">
+                            {{ ad.ad_category }}
+                        </a>
+                    </li>
+                    <li><i class="icon_calendar"></i>Обновлено {{ ad.ad_date }}</li>
+                </ul>
+            </div>
+        </div>
+{#        <div class="post-meta-wrapper">#}
+{#            <ul class="post-meta-info">#}
+{#                <li><a href="#"><i class="icon_chat_alt"></i>20</a></li>#}
+{#                <li><a href="#"><i class="icon_star"></i>5</a></li>#}
+{#            </ul>#}
+{#        </div>#}
+    </div>
+    <!-- /.community-post -->
+    {% endfor %}
+    <!-- /.community-post -->
+</div>
+<!-- /.community-posts-wrapper -->
+    {% if page_obj %}
+        {% include 'D16_MMORPG_board/_pagination.html' %}
+    {% endif %}
+{% else %}
+    <h3 style="text-align: center; margin: 1rem">Тут объявлений нет ¯\_(ツ)_/¯</h3>
+{% endif %}
+
+{% endblock page_content %}

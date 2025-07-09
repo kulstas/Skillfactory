@@ -1,0 +1,40 @@
+<div class="pagination-wrapper">
+      <div class="view-post-of">
+          <p>Показано с {{ page_obj.start_index }} по {{ page_obj.end_index }} объявлений из {{ page_obj.paginator.count }}</p>
+      </div>
+    <ul class="post-pagination">
+    {% if page_obj.has_previous %}
+        <li class="prev-post">
+            <a href="?page={{ page_obj.previous_page_number }}">
+            <i class="arrow_carrot-left"></i></a>
+        </li>
+        <li>
+            <a href="?page=1">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                <li>...</li>
+                <li><a href="?page={{ page_obj.previous_page_number }}">
+                    {{ page_obj.previous_page_number }}
+                </a></li>
+            {% endif %}
+    {% endif %}
+
+    <li><a href="#" class="active">{{ page_obj.number }}</a></li>
+
+    {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">
+            {{ page_obj.next_page_number }}
+        </a></li>
+        {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+            <li>...</li>
+        <li><a href="?page={{ page_obj.paginator.num_pages }}">
+            {{ page_obj.paginator.num_pages }}
+        </a></li>
+        {% endif %}
+        <li class="next-post">
+            <a href="?page={{ page_obj.next_page_number }}">
+            <i class="arrow_carrot-right"></i></a>
+        </li>
+    {% endif %}
+    </ul>
+</div>
+<!-- /.pagination-wrapper -->

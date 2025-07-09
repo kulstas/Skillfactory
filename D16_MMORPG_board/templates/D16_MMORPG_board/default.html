@@ -1,0 +1,266 @@
+{% load custom_tags %}
+{% load cache %}
+{% load i18n %}
+{% load tz %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico" type="image/x-icon' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <title>D16 — MMORPG</title>
+</head>
+
+<body data-scroll-animation="true">
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+{#                    <img src="{% static 'img/spinner_logo.png' %}" alt="">#}
+                    <h4><span>MMORPG</span></h4>
+                </div>
+            </div>
+            <h2 class="head">Доска объявлений </h2>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="body_wrapper">
+        <nav class="navbar navbar-expand-lg menu_one" id="sticky">
+            <div class="container">
+                <a class="navbar-brand sticky_logo" href="/">
+                    <span>MMORPG</span>
+{#                    <img src="{% static 'img/logo-w.png' %}" srcset="{% static 'img/logo-w2x.png'%} 2x" alt="logo">#}
+{#                    <img src="{% static 'img/logo.png' %}" srcset="{% static 'img/logo-2x.png'%} 2x" alt="logo">#}
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="menu_toggle">
+                        <span class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="hamburger-cross">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu ml-auto">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link" role="button" aria-expanded="false">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" role="button" aria-expanded="false">О сообществе</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" role="button" aria-expanded="false">Контакты</a>
+                        </li>
+
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item dropdown submenu active">
+                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Здравствуйте, {{ user.username }}!
+                            </a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true" data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="{% url 'ads' %}" class="nav-link">Мои объявления</a></li></li>
+                                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">Профиль</a></li></li>
+                                <li class="nav-item">
+                                    <form method="post" id="logout" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                    </form>
+                                    <a href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;" class="nav-link">Выйти</a>
+                                </li>
+                            </ul>
+                    {% endif %}
+                    </ul>
+                    {% if not request.user.is_authenticated %}
+                        <a class="nav_btn" href="{% url 'login' %}">Войти</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <section class="breadcrumb_area">
+            <img class="p_absolute bl_left" src="{% static 'img/v.svg' %}" alt="">
+            <img class="p_absolute bl_right" src="{% static 'img/home_one/b_leaf.svg' %}" alt="">
+            <img class="p_absolute star" src="{% static 'img/home_one/banner_bg.png' %}" alt="">
+            <img class="p_absolute wave_shap_one" src="{% static 'img/blog-classic/shap_01.png' %}" alt="">
+            <img class="p_absolute wave_shap_two" src="{% static 'img/blog-classic/shap_02.png' %}" alt="">
+            <img class="p_absolute one wow fadeInRight" src="{% static 'img/home_one/b_man_two.png' %}" alt="">
+            <img class="p_absolute two wow fadeInUp" data-wow-delay="0.2s" src="{% static 'img/home_one/flower.png' %}" alt="">
+            {% if filterset %}
+            <div class="container custom_container">
+                <form action="#" class="banner_search_form banner_search_form_two" method="get">
+                    <div class="input-group">
+                        {% csrf_token %}
+                        {{ filterset.form.ad_title }}
+                        <button type="submit"><i class="icon_search"></i></button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="page_breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="action-button-container">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'ad_create' %}" class="action_btn btn-ans ask-btn">Разместить объявление</a>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="action_btn btn-ans ask-btn">Разместить объявление</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="doc_blog_grid_area sec_pad forum-page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        {% block page_content %}
+                        {% endblock page_content %}
+                    </div>
+                    <!-- /.col-lg-8 -->
+
+                    <div class="col-lg-4">
+                        <div class="forum_sidebar">
+                            {% include 'D16_MMORPG_board/_sidebar.html' %}
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+            </div>
+            <!-- /.container -->
+        </section>
+
+        <div class="call-to-action">
+            <div class="overlay-bg"></div>
+            <div class="container">
+                <div class="action-content-wrapper">
+                    <div class="action-title-wrap title-img">
+                        <img src="{% static 'img/home_support/chat-smile.png' %}" alt="">
+                        <h2 class="action-title">Новый в сообществе?</h2>
+                    </div>
+                    <a href="{% url 'login' %}" class="action_btn">Присоединяйся <i class="arrow_right"></i></a>
+                </div>
+                <!-- /.action-content-wrapper -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.call-to-action -->
+
+       <footer class="footer_area f_bg_color">
+            <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
+            <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
+            <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
+            <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
+            <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
+            <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt="">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="f_widget subscribe_widget wow fadeInUp">
+                                <h4 class="c_head">Подпишись на наши новости</h4>
+                                <form action="#" class="footer_subscribe_form">
+                                    <input type="email" placeholder="Email" class="form-control">
+                                    <button type="submit" class="s_btn">Send</button>
+                                </form>
+                                <ul class="list-unstyled f_social_icon">
+                                    <li><a href="#"><i class="social_facebook"></i></a></li>
+                                    <li><a href="#"><i class="social_twitter"></i></a></li>
+                                    <li><a href="#"><i class="social_vimeo"></i></a></li>
+                                    <li><a href="#"><i class="social_linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="f_widget link_widget pl_30 wow fadeInUp" data-wow-delay="0.2s">
+                                <h3 class="f_title">Company</h3>
+                                <ul class="list-unstyled link_list">
+                                    <li><a href="#">О комьюнити</a></li>
+                                    <li><a href="#">Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="f_widget link_widget wow fadeInUp" data-wow-delay="0.4s">
+                                <h3 class="f_title">Support</h3>
+                                <ul class="list-unstyled link_list">
+                                    <li><a href="index-3.html">Help Desk</a></li>
+                                    <li><a href="#">Knowledge Base</a></li>
+                                    <li><a href="#">Live Chat</a></li>
+                                    <li><a href="#">Integrations</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="f_widget link_widget pl_70 wow fadeInUp" data-wow-delay="0.6s">
+                                <h3 class="f_title">Doc Pages</h3>
+                                <ul class="list-unstyled link_list">
+                                    <li><a href="doclist.html">Doc Topic</a></li>
+                                    <li><a href="#">Free Training</a></li>
+                                    <li><a href="doc-archive.html">Doc Archive</a></li>
+                                    <li><a href="changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border_bottom"></div>
+                </div>
+            </div>
+            <div class="footer_bottom text-center">
+                <div class="container">
+                    <p>© 2025 All Rights Reserved by <a href="index.html">KULAGIN</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/pre-loader.js' %}"> </script>
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/jquery.wavify.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

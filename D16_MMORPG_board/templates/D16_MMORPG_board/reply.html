@@ -1,0 +1,35 @@
+{% extends 'D16_MMORPG_board/default.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="section_title text-center">
+        <h2 class="h_title wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            Откликнуться на объявление
+        </h2>
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert media message_alert alert-{{ message.tags }} fade show" role="alert">
+                <i class=" icon_check_alt2"></i>
+                <div class="media-body">
+                    <h5>{{ message }}</h5>
+                        <p>Do one don't get shirty with me naff only a quid the full monty at public school burke Jeffrey smashing, blatant ruddy fanny around Charles.</p>#}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="icon_close"></i>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form class="row" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="col-lg-12 form-group">
+            {{ form.reply_text }}
+        </div>
+        <div class="col-lg-12 text-center">
+            <button type="submit" class="btn action_btn thm_btn">Отправить отклик</button>
+        </div>
+    </form>
+{% endblock %}

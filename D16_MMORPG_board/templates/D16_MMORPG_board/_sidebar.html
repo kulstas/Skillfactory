@@ -1,0 +1,14 @@
+{% load static %}
+                        {% if cat_list %}
+                            <div class="widget ticket_widget">
+                                <h4 class="c_head">Категории</h4>
+                                <ul class="list-unstyled ticket_categories">
+                                    {% for c in cat_list %}
+                                    <li>
+                                        <a href="/category/{{ c.id }}">{{ c.category_name }}</a>
+                                        <span class="count">{{ c.ads_count }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                         {% endif %}

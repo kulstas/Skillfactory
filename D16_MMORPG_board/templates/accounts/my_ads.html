@@ -1,0 +1,49 @@
+{% extends 'accounts/default.html' %}
+{% load static %}
+
+{% block profile_content %}
+ <div class="documentation_info">
+    <div class="documentation_body" id="documentation">
+        <div class="shortcode_title">
+           <h2>Мои объявления</h2>
+        </div>
+       <div class="row">
+       <div class="col-lg-8">
+       {% if my_ads %}
+           {% for ad in my_ads %}
+       <div class="community-post style-two docly richard bug">
+           <div class="post-content">
+               <div class="entry-content">
+                   <h3 class="post-title">
+                       <a href="{% url 'ad_detail' ad.pk %}">{{ ad.ad_title }}</a>
+                   </h3>
+                   {% if ad.ad_status is False %}
+                       <span class="com-featured"><i class="icon_check"></i></span>
+                   {% endif %}
+                   <ul class="meta">
+                       <li>
+                           <a href="/category/{{ ad.ad_category_id }}">
+                               {{ ad.ad_category }}
+                           </a>
+                       </li>
+                       <li><i class="icon_calendar"></i>Обновлено 3 дня назад</li>
+                   </ul>
+               </div>
+           </div>
+           <div class="post-meta-wrapper">
+               <ul class="post-meta-info">
+                   <li><a href="#"><i class="icon_chat_alt"></i>{{ ad.reply_count }}</a></li>
+    {#               <li><a href="#"><i class="icon_star"></i>5</a></li>#}
+               </ul>
+           </div>
+       </div>
+           {% endfor %}
+       {% else %}
+           <h5 style="margin-top: 1rem;">Тут объявлений нет ¯\_(ツ)_/¯</h5>
+{#           <a href="{% url 'ad_create' %}" class="action_btn btn-ans">Разместить объявление</a>#}
+       {% endif %}
+       </div>
+    </div>
+    </article>
+</div>
+{% endblock %}

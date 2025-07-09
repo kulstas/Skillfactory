@@ -1,0 +1,26 @@
+{% load static %}
+<div class="answer-action">
+    <div class="action-content">
+        <div class="image-wrap">
+            <img src="{% static 'img/home_support/answer.png' %}" alt="answer action">
+        </div>
+
+        <div class="content">
+            <h2 class="ans-title">Есть чё?</h2>
+            <p>
+                Поделись с сообществом :)
+            </p>
+        </div>
+    </div>
+    <!-- /.action-content -->
+
+    <div class="action-button-container">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'ad_create' %}" class="action_btn btn-ans">Разместить объявление</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="action_btn btn-ans">Разместить объявление</a>
+        {% endif %}
+    </div>
+    <!-- /.action-button-container -->
+</div>
+<!-- /.answer-action -->

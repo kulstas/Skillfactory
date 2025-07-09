@@ -1,0 +1,24 @@
+{% extends 'D16_MMORPG_board/default.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+
+            <div class="container">
+                <div class="error_content_two text-center">
+                    <div class="error_img">
+                        <img class="p_absolute error_shap" src="{% static 'img/404_bg.png' %}" alt="">
+                        <div class="one wow clipInDown" data-wow-delay="1s"><img class="img_one" src="{% static 'img/404_two.png' %}" alt=""></div>
+                        <div class="two wow clipInDown" data-wow-delay="1.5s"><img class="img_two" src="{% static 'img/404_three.png' %}" alt=""></div>
+                        <div class="three wow clipInDown" data-wow-delay="1.8s"><img class="img_three" src="{% static 'img/404_one.png' %}" alt=""></div>
+                    </div>
+                    <h2>Упс. Такой страницы не существует.</h2>
+                    <p>Попробуйте вернуться на Главную страницу и поискать там...</p>
+{#                    <form action="#" class="error_search">#}
+{#                        <input type="text" class="form-control" placeholder="Search">#}
+{#                    </form>#}
+                    <a href="/" class="action_btn box_shadow_none"><i class="arrow_left"></i>Вернуться на Главную страницу</a>
+                </div>
+            </div>
+
+{% endblock page_content %}
