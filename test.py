@@ -18,6 +18,7 @@ import re
 
 from django.http import HttpResponse
 
+
 def multiply(request):
     number = request.GET.get('number')
     multiplier = request.GET('multiplier')

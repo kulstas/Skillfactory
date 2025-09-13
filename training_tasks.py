@@ -1,0 +1,315 @@
+# def test_range(digit, low, high):
+#     if digit not in range(low, high):
+#         print(f'Число {digit} не попадает в диапазон между {low} и {high}')
+#
+#
+# test_range(5, 1, 10)
+
+"""Задание 3.3 (External resource)"""
+# def is_success_code(code):
+#     return 200 <= code <= 299
+#
+# print(is_success_code(200))
+# print(is_success_code(404))
+
+"""Задание 3.4 (External resource)"""
+# def is_valid_email(e_mail:str):
+#     return "@" in e_mail and "." in e_mail[e_mail.index("@")+1::] and not " " in e_mail
+#
+#
+# print(is_valid_email("user@example. com"))
+
+"""Задание 3.5 (External resource)"""
+# def test_function(myfunc, par1, par2):
+#     return myfunc(par1) == par2
+#
+#
+# def square(n):
+#    return n ** 2
+#
+#
+# print(test_function(square, 4, 16))
+# print(test_function(square, 5, 20))
+
+
+""" PHONE BOOK """
+# phoneBook = {
+#     'Семен': '7777777777',
+#     'Петр': '8888888888',
+#     'Алеша': '9999999999',
+#     'Гусь': '1111111111',
+#     'Жора': '2222222222',
+# }
+#
+# print(phoneBook.keys())
+# print(phoneBook.values())
+#
+# for abon, number in phoneBook.items():
+#     print(f"Имя: {abon} — Телефон: {number}")
+#
+# i = 1
+# while i <= 2:
+#     new_abon = input(f"Введите имя нового друга {i}: ")
+#     new_number = input(f"Введите телефон нового друга {i}: ")
+#     phoneBook[new_abon] = new_number
+#     i += 1
+#
+# for abon, number in phoneBook.items():
+#     print(f"Имя: {abon} — Телефон: {number}")
+
+
+""" CLASS BOOK """
+# import random
+#
+# # список учеников
+# students = ['Аполлон', 'Ярослав', 'Александра', 'Дарья', 'Ангелина']
+# # отсортируем список учеников
+# students.sort()
+# # список предметов
+# classes = ['Математика', 'Русский язык', 'Информатика']
+# # пустой словарь с оценками по каждому ученику и предмету
+# students_marks = {}
+# # сгенерируем данные по оценкам:
+# # цикл по ученикам
+# for student in students:  # 1 итерация: student = 'Александра'
+#     students_marks[student] = {}  # 1 итерация: students_marks['Александра'] = {}
+#     # цикл по предметам
+#     for class_ in classes:  # 1 итерация: class_ = 'Математика'
+#         marks = [random.randint(1, 5) for i in range(3)]  # генерируем список из 3х случайных оценок
+#         students_marks[student][class_] = marks  # students_marks['Александра']['Математика'] = [5, 5, 5]
+# # выводим получившийся словарь с оценками:
+# for student in students:
+#     print(f'''{student}
+#             {students_marks[student]}''')
+#
+# print('''
+#         Список команд:
+#         1. Добавить оценки ученика по предмету
+#         2. Вывести средний балл по всем предметам по каждому ученику
+#         3. Вывести все оценки по всем ученикам
+#         4. Редактировать имя ученика
+#         5. Удалить ученика
+#         6. Редактировать предметы ученика
+#         7. Удалить предмет ученика
+#         8. Редактировать оценку ученика
+#         9. Удалить оценку ученика
+#         10. Вывести информацию по всем оценкам ученика
+#         11. Вывести средний балл по предметам ученика
+#         12. Выход из программы
+#         ''')
+#
+# while True:
+#     command = int(input('Введите команду: '))
+#     if command == 1:
+#         print('1. Добавить оценку ученика по предмету')
+#         # считываем имя ученика
+#         student = input('Введите имя ученика: ')
+#         # считываем название предмета
+#         class_ = input('Введите предмет: ')
+#         # считываем оценку
+#         mark = int(input('Введите оценку: '))
+#         # если данные введены верно
+#         if student in students_marks.keys() and class_ in students_marks[student].keys():
+#             # добавляем новую оценку для ученика по предмету
+#             students_marks[student][class_].append(mark)
+#             print(f'Для {student} по предмету {class_} добавлена оценка {mark}')
+#         # неверно введены название предмета или имя ученика
+#         else:
+#             print('ОШИБКА: неверное имя ученика или название предмета')
+#     elif command == 2:
+#         print('2. Вывести средний балл по всем предметам по каждому ученику')
+#         # цикл по ученикам
+#         for student in students:
+#             print(student)
+#             # цикл по предметам
+#             for class_ in classes:
+#                 # находим сумму оценок по предмету
+#                 marks_sum = sum(students_marks[student][class_])
+#                 # находим количество оценок по предмету
+#                 marks_count = len(students_marks[student][class_])
+#                 # выводим средний балл по предмету
+#                 print(f'{class_} - {marks_sum // marks_count}')
+#             print()
+#     elif command == 3:
+#         print('3. Вывести все оценки по всем ученикам')
+#         # выводим словарь с оценками:
+#         # цикл по ученикам
+#         for student in students:
+#             print(student)
+#             # цикл по предметам
+#             for class_ in classes:
+#                 print(f'\t{class_} - {students_marks[student][class_]}')
+#             print()
+#     elif command == 4:
+#         print('4. Редактировать имя ученика')
+#         student = input('Введите имя ученика: ')
+#         if student in students:
+#             rename_student = input(f'Введите новое имя для ученика ({student}): ')
+#             students[students.index(student)] = rename_student
+#             print(f'Имя ученика {student} успешно изменено на {rename_student}')
+#             print(students)
+#         else:
+#             print('ОШИБКА: неверное имя ученика')
+#     elif command == 5:
+#         print('5. Удалить ученика')
+#         del_student = input(f'Введите имя ученика, которго необходмо удалить: ')
+#         if del_student in students:
+#             students.remove(del_student)
+#             del students_marks[del_student]
+#             print(students)
+#             print(students_marks)
+#         else:
+#             print('ОШИБКА: неверное имя ученика')
+#     elif command == 6:
+#         print('6. Редактировать предметы ученика')
+#     elif command == 7:
+#         print('7. Удалить предмет ученика')
+#     elif command == 8:
+#         print('8. Редактировать оценку ученика')
+#     elif command == 9:
+#         print('9. Удалить оценку ученика')
+#     elif command == 10:
+#         print('10. Вывести информацию по всем оценкам ученика')
+#     elif command == 11:
+#         print('11. Вывести средний балл по предметам ученика')
+#     elif command == 12:
+#         print('12. Выход из программы')
+#         break
+
+
+# def check_password(password):
+#     if any(char.isalnum() for char in password):
+#         if len(password) < 8:
+#             print('Пароль должен быть не менее 8 символов')
+#         if password.islower() or password.isdigit():
+#             print('Пароль должен содержать хотя бы одну заглавную букву')
+#         if password.isupper() or password.isdigit():
+#             print('Пароль должен содержать хотя бы одну строчную букву')
+#         if password.isalpha():
+#             print('Пароль должен содержать хотя бы одну цифру')
+#     else:
+#         print('Пароль должен быть не менее 8 символов')
+#         print('Пароль должен содержать хотя бы одну заглавную букву')
+#         print('Пароль должен содержать хотя бы одну строчную букву')
+#         print('Пароль должен содержать хотя бы одну цифру')
+
+# userpass = '1'
+# check_password(userpass)
+
+
+"""Задание 4.3 (External resource)"""
+# def is_valid_password(password, min_length=8, require_upper=True, require_lower=True, require_digit=True):
+#     return (len(password) >= min_length) and ((any(i.isupper() for i in password) is require_upper) if require_upper else not require_upper) and ((any(i.islower() for i in password) is require_lower) if require_lower else not require_lower) and ((any(i.isdigit() for i in password) is require_digit) if require_digit else not require_digit)
+
+# print(is_valid_password('Password123'))
+# print(is_valid_password('abcdef', min_length=6, require_upper=False, require_lower=False, require_digit=False))
+
+
+"""Задание 4.4 (External resource)"""
+# import random
+# def generate_test_data(n=5, min_value=1, max_value=10):
+#     s = []
+#     for i in range(n):
+#         s.append(random.randint(min_value, max_value))
+#
+#     return s
+#
+#
+# print(generate_test_data())
+
+
+'''Задание 4.5 (External resource)'''
+# def format_date(date, format=None):
+#     date_sep = date.split(sep="-")
+#     if format == 'dmy'or format is None:
+#         return ''.join(date_sep[::-1])
+#     elif format == 'mdy':
+#         return date_sep[1]+date_sep[2]+date_sep[0]
+#     elif format == 'ymd':
+#         return date_sep[0] + date_sep[1] + date_sep[2]
+#     else:
+#         return date
+
+# print(format_date("2023-07-01"))
+# print(format_date("2023-07-01", format="dmy"))
+# print(format_date("2023-07-01", format="mdy"))
+# print(format_date("2023-07-01", format="ymd"))
+# print(format_date("2023-07-01", format="xyz"))
+
+'''Задание 4.6 (External resource)'''
+# def compare_lists(lst1, lst2, ignore_case=False):
+#     if ignore_case:
+#         return list(set(el.lower() for el in lst1) - set(el.lower() for el in lst2))
+#     else:
+#         return list(set(lst1) - set(lst2))
+
+# print(compare_lists(["apple", "banana", "cherry"], ["Banana", "cherry", "date"]))
+# print(compare_lists(["apple", "banana", "cherry"], ["Banana", "cherry", "date"], ignore_case=True))
+# print(compare_lists(['a', 'b', 'c'], ['B', 'C', 'D'], ignore_case = True))
+
+
+'''Задание 6.1 (External resource)'''
+# def sort_strings_by_last_char(sorting):
+#     return sorted(sorting, key=lambda x: x[-1])
+#
+# strings = ["apple", "banana", "cherry", "date", "elderberry"]
+# print(sort_strings_by_last_char(strings))
+
+
+'''Задание 6.2 (External resource)'''
+# def apply_function(ratings, my_func):
+#     return [my_func(rat) for rat in ratings]
+#
+# numbers = [1, 2, 3, 4, 5]
+# print(apply_function(numbers, lambda x: x**2))
+
+'''Задание 7.1 (External resource)'''
+def sales_stats(sales, **kwargs):
+    sales_dict = {}
+    if ('revenue' or 'quantity') in kwargs:
+        if 'revenue' in kwargs:
+            rev = sum((lambda p, q: p * q)(sale[1], sale[2]) for sale in sales)
+        else:
+            rev = None
+        if 'quantity' in kwargs:
+            for sale in sales:
+                if sale[0] in sales_dict:
+                    sales_dict[sale[0]] += sale[1]
+                else:
+                    sales_dict[sale[0]] = sale[1]
+        else:
+            sales_dict = None
+    else:
+        rev, sales_dict = None, None
+
+    return (rev, sales_dict)
+
+
+# sales_data = [["яблоки", 10, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
+# print(sales_stats(sales_data, revenue=True))
+# (490, None)
+# print(sales_stats(sales_data, quantity=True))
+# (None, {'яблоки': 17, 'груши': 5})
+
+
+# print(sales_stats([('Apple', 10, 0.5), ('Orange', 5, 0.6)], revenue=True, quantity=True))
+# print(sales_stats([('Apple', 10, 0.5), ('Orange', 5, 0.6)], customers=True))
+# print(sales_stats([('Apple', 10, 0.5), ('Orange', 5, 0.6)], revenue = True))
+
+'''Задание 7.2 (External resource)'''
+def create_report(data, stats):
+    reports = stats(data, revenue=True, quantity=True)
+    print(f'Средний доход за данный период составил', reports[0]/len(data))
+    print('Количество проданных единиц каждого товара:')
+    stat = ''
+    for report in list(reports[1].items()):
+       stat += f'{report[0]}: {report[1]}' + '\n' if list(reports[1].items()).index(report) != (len(list(reports[1].items()))+1) else ''
+    return stat
+
+
+sales_data = [["яблоки", 20, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
+print(create_report(sales_data, sales_stats))
+# Средний доход за данный период составил 230.0.
+# Количество проданных единиц каждого товара:
+# яблоки: 27
+# груши: 5
