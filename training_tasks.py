@@ -247,6 +247,16 @@
 # print(compare_lists(["apple", "banana", "cherry"], ["Banana", "cherry", "date"], ignore_case=True))
 # print(compare_lists(['a', 'b', 'c'], ['B', 'C', 'D'], ignore_case = True))
 
+"""Задание 5.2 (External resource)"""
+# def calculate_average(*args):
+#     return sum(args) / len(args)
+
+"""Задание 5.3 (External resource)"""
+# def sort_data(**kwargs):
+#     return sorted(kwargs.items())
+#
+# print(sort_data(name='Alex', age=30, city='New York'))
+
 
 '''Задание 6.1 (External resource)'''
 # def sort_strings_by_last_char(sorting):
@@ -264,25 +274,25 @@
 # print(apply_function(numbers, lambda x: x**2))
 
 '''Задание 7.1 (External resource)'''
-def sales_stats(sales, **kwargs):
-    sales_dict = {}
-    if ('revenue' or 'quantity') in kwargs:
-        if 'revenue' in kwargs:
-            rev = sum((lambda p, q: p * q)(sale[1], sale[2]) for sale in sales)
-        else:
-            rev = None
-        if 'quantity' in kwargs:
-            for sale in sales:
-                if sale[0] in sales_dict:
-                    sales_dict[sale[0]] += sale[1]
-                else:
-                    sales_dict[sale[0]] = sale[1]
-        else:
-            sales_dict = None
-    else:
-        rev, sales_dict = None, None
-
-    return (rev, sales_dict)
+# def sales_stats(sales, **kwargs):
+#     sales_dict = {}
+#     if ('revenue' or 'quantity') in kwargs:
+#         if 'revenue' in kwargs:
+#             rev = sum((lambda p, q: p * q)(sale[1], sale[2]) for sale in sales)
+#         else:
+#             rev = None
+#         if 'quantity' in kwargs:
+#             for sale in sales:
+#                 if sale[0] in sales_dict:
+#                     sales_dict[sale[0]] += sale[1]
+#                 else:
+#                     sales_dict[sale[0]] = sale[1]
+#         else:
+#             sales_dict = None
+#     else:
+#         rev, sales_dict = None, None
+#
+#     return (rev, sales_dict)
 
 
 # sales_data = [["яблоки", 10, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
@@ -297,19 +307,27 @@ def sales_stats(sales, **kwargs):
 # print(sales_stats([('Apple', 10, 0.5), ('Orange', 5, 0.6)], revenue = True))
 
 '''Задание 7.2 (External resource)'''
-def create_report(data, stats):
-    reports = stats(data, revenue=True, quantity=True)
-    print(f'Средний доход за данный период составил', reports[0]/len(data))
-    print('Количество проданных единиц каждого товара:')
-    stat = ''
-    for report in list(reports[1].items()):
-       stat += f'{report[0]}: {report[1]}' + '\n' if list(reports[1].items()).index(report) != (len(list(reports[1].items()))+1) else ''
-    return stat
-
-
-sales_data = [["яблоки", 20, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
-print(create_report(sales_data, sales_stats))
+# def create_report(data, stats):
+#     reports = stats(data, revenue=True, quantity=True)
+#     print(f'Средний доход за данный период составил {reports[0]/len(data)}.')
+#     print('Количество проданных единиц каждого товара:')
+#     return "\n".join(f'{key}: {val}' for key, val in reports[1].items())
+#
+# sales_data = [["яблоки", 20, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
+# print(create_report(sales_data, sales_stats))
 # Средний доход за данный период составил 230.0.
 # Количество проданных единиц каждого товара:
 # яблоки: 27
 # груши: 5
+
+'''Задание 7.3 (External resource)'''
+# def sort_users_by_activity(usrs):
+#     sorted_usrs=[]
+#     for k in sorted(usrs.items(), reverse=True, key=lambda usr: usr[1]):
+#         sorted_usrs.append(k[0])
+#     return sorted_usrs
+#
+#
+# user_activity = {"user1": 10, "user2": 5, "user3": 20, "user4": 15, "user5": 10}
+# print(sort_users_by_activity(user_activity))
+# # ['user3', 'user4', 'user1', 'user5', 'user2']
