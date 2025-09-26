@@ -348,3 +348,16 @@
 # print(fibonacci(8))
 # #21
 
+'''Задание 2.5 (External resource)'''
+# def is_palindrome(s):
+#     if len(s) == 0:
+#         return True
+#     elif s[0] != s[-1]:
+#         return False
+#     else:
+#         return is_palindrome(s[+1:-1])
+#
+#
+# print(is_palindrome('racecar'))
+# print(is_palindrome('gong'))
+
