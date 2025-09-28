@@ -361,3 +361,23 @@
 # print(is_palindrome('racecar'))
 # print(is_palindrome('gong'))
 
+'''Задание 2.6 (External resource)'''
+# def binary_search(lst, el):
+#     if lst[len(lst)//2] == el:
+#         return True
+#     if lst[0] < el < lst[-1]:
+#         if lst[len(lst)//2] > el:
+#             return binary_search(lst[0:len(lst)//2], el)
+#         elif lst[len(lst)//2] < el:
+#             return binary_search(lst[len(lst)//2:], el)
+#     else:
+#         return False
+
+
+# print(binary_search([1, 2, 3, 4, 5], 4))
+# True
+# print(binary_search([1, 2, 3, 4, 5], 6))
+# False
+
+
+
