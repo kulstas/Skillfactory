@@ -379,5 +379,33 @@
 # print(binary_search([1, 2, 3, 4, 5], 6))
 # False
 
+'''Задание 3.3 (External resource)'''
+# def generate_urls(text, min, max):
+#     for i in range(min, max+1):
+#         yield f'{text}{i}'
+#
+# url_generator = generate_urls("/product/", 1, 3)
+# for url in url_generator:
+#    print(url)
+# /product/1
+# /product/2
+# /product/3
 
-
+'''Задание 3.4 (External resource)'''
+# from random import randint
+# def generate_user_data(limit, fnames, lnames, age):
+#    for i in range(limit):
+#       yield fnames[randint(0, len(fnames))-1], lnames[randint(0, len(lnames)-1)], randint(age[0], age[1])
+#
+#
+#
+# first_names = ["Alice", "Bob", "Charlie"]
+# last_names = ["Smith", "Johnson", "Williams"]
+# user_data_generator = generate_user_data(5, first_names, last_names, [18, 60])
+# for user in user_data_generator:
+#    print(user)
+# ('Charlie', 'Williams', 19)
+# ('Charlie', 'Johnson', 48)
+# ('Bob', 'Johnson', 26)
+# ('Charlie', 'Smith', 36)
+# ('Charlie', 'Johnson', 35)
