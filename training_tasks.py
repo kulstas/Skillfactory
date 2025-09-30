@@ -409,3 +409,27 @@
 # ('Bob', 'Johnson', 26)
 # ('Charlie', 'Smith', 36)
 # ('Charlie', 'Johnson', 35)
+
+'''Задание 3.5 (External resource)'''
+# def fibonacci(n):
+#    fib, f2 = 0, 0
+#    f1 = 1
+#    for _ in range(n):
+#        yield fib
+#        fib = f1 + f2
+#        f2 = fib
+#        f1 = fib - f1
+#
+#
+# fibonacci_generator = fibonacci(7)
+# for number in fibonacci_generator:
+#    print(number)
+
+# 0
+# 1
+# 1
+# 2
+# 3
+# 5
+# 8
+
