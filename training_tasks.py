@@ -433,3 +433,19 @@
 # 5
 # 8
 
+'''Задание 3.6 (External resource)'''
+# def primes(n):
+#    for d in range(2, n+1):
+#       if (d == 2 or d % 2 != 0) and (d == 3 or d % 3 != 0) and (d == 5 or d % 5 != 0):
+#             yield d
+#
+# prime_generator = primes(33)
+# for prime in prime_generator:
+#    print(prime)
+
+# 2
+# 3
+# 5
+# 7
+
+
