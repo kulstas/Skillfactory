@@ -448,4 +448,25 @@
 # 5
 # 7
 
+# headers = ["name", "age", "gender"]
+# row = ["Alice", 28, "Female"]
+#
+#
+# user_data = dict(zip(headers, row))
+# print(user_data)
 
+'''Задание 4.1 (External resource)'''
+# prices_in_usd = [10, 20, 30, 40, 50]
+# exchange_rate = 0.85
+#
+# prices_in_euro = list(map(lambda x: x*exchange_rate, prices_in_usd))
+
+'''Задание 4.2 (External resource)'''
+# phone_numbers = ['123-456-7890', '123.456.7890', '(123) 456-7890', '+1234567890', '1234567890']
+#
+# def format_phone_number(number):
+#    return ''.join(list(filter(str.isdigit, number)))
+#
+# formatted_numbers = list(map(format_phone_number, phone_numbers))
+#
+# print(formatted_numbers)
