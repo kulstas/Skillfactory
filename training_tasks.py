@@ -470,3 +470,95 @@
 # formatted_numbers = list(map(format_phone_number, phone_numbers))
 #
 # print(formatted_numbers)
+
+'''Задание 6.6 (External resource)'''
+# def create_counter():
+#     v = 0
+#     def count():
+#         nonlocal v
+#         v += 1
+#         return v
+#
+#     return count
+#
+#
+# counter = create_counter()
+# print(counter())  # вернет "1"
+# print(counter())  # вернет "2"
+# print(counter())  # вернет "3"
+
+'''Задание 6.7 (External resource)'''
+# def create_unique_checker():
+#     transactions = []
+#
+#     def check(transaction):
+#         nonlocal transactions
+#         if transaction in set(transactions):
+#             return False
+#         else:
+#             transactions.append(transaction)
+#             return True
+#
+#     return check
+#
+#
+# unique_checker = create_unique_checker()
+# print(unique_checker(5))
+# print(unique_checker(5))
+# print(unique_checker(10))
+#
+# # True
+# # False
+# # True
+
+'''Задание 6.8 (External resource)'''
+# import time
+#
+# def timer():
+#     time_before = time.time()
+#
+#     def time_count():
+#         nonlocal time_before
+#         time_now = time.time()
+#         result = time_now - time_before
+#         time_before = time_now
+#         return result
+#
+#     return time_count
+#
+# my_timer = timer()
+# print(int(my_timer())) # int — для приближенного значения секунд
+# # Ждем немного...
+# time.sleep(2)
+# print(int(my_timer()))
+
+# Вывод:
+# 0
+# 2
+
+'''Задание 6.9 (External resource)'''
+# import random
+#
+# symbols_for_password = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+#
+#
+# def create_password_generator(size, symbols):
+#     def pass_gen():
+#         nonlocal size
+#         nonlocal symbols
+#         password = ''
+#         for _ in range(size):
+#             password += symbols[random.randint(0, len(symbols)-1)]
+#         return password
+#
+#     return pass_gen
+#
+#
+# password_generator = create_password_generator(10, symbols_for_password)
+# print(password_generator())
+# print(password_generator())
+
+# Stl0tgwWSL
+# oboYrgROdF
+
+
