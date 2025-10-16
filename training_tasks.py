@@ -561,4 +561,27 @@
 # Stl0tgwWSL
 # oboYrgROdF
 
-
+'''Задание 7.5 (External resource)'''
+# import random
+#
+# def retry_if_result_is_none(times=1):
+#     def decorator(func):
+#         def wrapper(*args, **kwargs):
+#             if func() != None:
+#                 return func(*args, **kwargs)
+#
+#         return wrapper
+#     return decorator
+#
+#
+# @retry_if_result_is_none(times=2)
+# def test_function():
+#     return random.choice([None, "Passed"])
+#
+# # Получилось получить значение за 2 вызова
+# print(test_function())
+# # Passed
+#
+# # Не получилось получить значение за 2 вызова
+# print(test_function())
+# # None
