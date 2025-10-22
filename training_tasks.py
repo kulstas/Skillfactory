@@ -615,3 +615,41 @@
 # # Функция вернула int
 # print(test_function())
 # # 10
+
+'''Задание 9.1 (External resource)'''
+# from datetime import date
+# from typing import List, Dict, Any
+#
+#
+# def calculate_age(birth_date: str) -> int:
+#     return int((date.today() - date.fromisoformat(birth_date)).days/365.25)
+#
+#
+# print(calculate_age("1990-05-15"))
+# # 33
+#
+# users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15'},
+#               {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22'},
+#               {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01'}]
+#
+#
+# def filter_adults(users: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+#     checked_users = []
+#     for user in users:
+#         if calculate_age(user['birth_date']) >= 18:
+#             checked_users.append(user)
+#
+#     return checked_users
+#
+#
+# print(filter_adults(users_data))
+# # [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15'}, {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22'}]
+#
+#
+# def generate_username(first_name: str, last_name: str) -> str:
+#     return str(first_name[0] + '.' + last_name).lower()
+#
+# print(generate_username("John", "Doe"))
+# # "j.doe"
+
+'''Задание 9.2 (External resource)'''
