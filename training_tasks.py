@@ -653,3 +653,85 @@
 # # "j.doe"
 
 '''Задание 9.2 (External resource)'''
+# from typing import List, Dict, Any
+# # А также вам наверняка может понадобиться модуль functools...
+#
+# def convert_to_full_name(users: List[Dict[str, Any]]) -> List[str]:
+#     full_names_users = []
+#     for user in users:
+#         full_names_users.append(user['first_name']+' '+user['last_name'])
+#     return full_names_users
+#
+#
+# def find_matching_emails(users1: List[Dict[str, Any]], users2: List[Dict[str, Any]]) -> set:
+#     emails_1, emails_2 = [], []
+#     for user in users1:
+#         emails_1.append(user['email'])
+#
+#     for user in users2:
+#         emails_2.append(user['email'])
+#
+#     return set(emails_1) & set(emails_2)
+#
+#
+# def combine_user_data(users: List[Dict[str, Any]]) -> Dict[str, List[Any]]:
+#     combine_users = {}
+#
+#     for user in users:
+#         for key in user:
+#             combine_users[key] = ()
+#
+#     for key in combine_users.keys():
+#         combine_users[key] = tuple(user[key] for user in users)
+#
+#     return combine_users
+#
+#
+# users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15', 'email': 'johndoe@gmail.com'},
+#              {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22', 'email': 'bobJ@gmail.com'},
+#              {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01', 'email': 'lev46@gmail.com'}]
+#
+# users_data_ext = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15', 'email': 'johndoe@gmail.com'}]
+
+# print(convert_to_full_name(users_data))
+# ['John Doe', 'Bob Johnson', 'Lev Sergeev']
+
+# print(find_matching_emails(users_data, users_data_ext))
+# {'johndoe@gmail.com'}
+
+# print(combine_user_data(users_data))
+# {'first_name': ('John', 'Bob', 'Lev'), 'last_name': ('Doe', 'Johnson', 'Sergeev'), 'birth_date': ('1990-05-15', '1985-10-22', '2015-01-01'), 'email': ('johndoe@gmail.com', 'bobJ@gmail.com', 'lev46@gmail.com')}
+
+'''Задание 9.3 (External resource)'''
+# import time
+# from typing import Callable
+#
+#
+# def time_it(func: Callable):
+#     def wrapper(*args, **kwargs):
+#         time_start = time.time()
+#         func(*args, **kwargs)
+#         time_ex = time.time() - time_start
+#         print(f"Execution time of '{func.__name__}': {int(time_ex)} seconds")
+#     return wrapper
+#
+#
+# # Функция — пример
+# # Она просто делает копию списка, добавляет value в конец списка и возвращает этот список
+# def add_point(original_list: list, value):
+#     # Специально делаем sleep, потому как без него время выполнения будет около нуля
+#     time.sleep(2)
+#     return original_list[:].append(value)
+#
+#
+# # Делаем новую функцию уже с декоратором
+# @time_it
+# def add_point_with_timer(original_list: list, value):
+#     add_point(original_list, value)
+#
+#
+# # Выполняем функцию с декоратором
+# add_point_with_timer([1, 2, 3, 4, 5], 6)
+#
+# # Execution time of 'add_point_with_timer': 2.003331 seconds
+
