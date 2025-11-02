@@ -735,3 +735,25 @@
 #
 # # Execution time of 'add_point_with_timer': 2.003331 seconds
 
+'''Задание 9.4 (External resource)'''
+# logs = """\
+# 2023-08-15 14:15:24 INFO Starting the system.
+# 2023-08-15 14:15:26 WARN System load is above 80%.
+# 2023-08-15 14:15:27 ERROR Failed to connect to database.
+# 2023-08-15 14:15:28 INFO Connection retry in 5 seconds.
+# """
+#
+# Log_type = ['INFO', 'WARN', 'ERROR']
+#
+#
+# def log_filter(logs: str, log_level: Log_type) -> str:
+#     for _ in logs.split('\n'):
+#         if log_level in _:
+#             yield _
+#
+#
+#
+# for log in log_filter(logs, 'INFO'):
+#    print(log)
+#
+# # 2023-08-15 14:15:27 ERROR Failed to connect to database.
