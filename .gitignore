@@ -1,4 +1,4 @@
-.venv/*
-.test/*
-.idea/*
-.vscode/*
+.venv/
+.test/
+.idea/
+.vscode/
