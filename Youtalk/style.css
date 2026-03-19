@@ -163,6 +163,10 @@ header {
     color: #333;
 }
 
+.header__nav_links a:hover, .bread-crumbs_nav_links ul a {
+    text-decoration: underline;
+}
+
 header button {
     background: #e3f5f5;
     border-width: 0;
@@ -899,7 +903,7 @@ article li {
     grid-column: span 4;
 }
 
-.post .cta img {
+.post .cta img:nth-child(1) {
     grid-column: 9 / span 3;
 }
 
@@ -954,9 +958,10 @@ article li {
 }
 
 .bg_right {
-    position: absolute;
-    top: 72px;
-    right: -100%;
+    position: relative;
+    bottom: 740px;
+    right: 0;
+    float: right;
 }
 
 .body__post {
