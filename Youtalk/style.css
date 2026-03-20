@@ -1499,7 +1499,7 @@ aside .banner__promo-lesson button {
         padding-bottom: 23px;
     }
 
-    .post .article__separ, .post .article__wrapper_two-columns, .post__accent, .post h1, .post p, .post blockquote, .post ul, .post article > span, .post article > figure, .article__table-of-contents, .post article h3 {
+    .post .article__separ, .post .article__wrapper_two-columns, .post__accent, .post h1, .post p, .post blockquote, .post article > span, .post article > figure, .article__table-of-contents, .post article h3 {
         grid-column: inherit;
         column-gap: inherit;
     }
