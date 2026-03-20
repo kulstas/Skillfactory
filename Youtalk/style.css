@@ -903,7 +903,7 @@ article li {
     grid-column: span 4;
 }
 
-.post .cta img:nth-child(1) {
+.post .cta img {
     grid-column: 9 / span 3;
 }
 
