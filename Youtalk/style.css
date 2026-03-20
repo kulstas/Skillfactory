@@ -1302,13 +1302,9 @@ aside .banner__promo-lesson button {
         display: none !important;
     }
 
-    body {
+    body, .body__post {
         background: none;
     }    
-
-    /* .body__post {
-        background: none;
-    } */
 
     .article__table-of-contents ul {
         gap: 8px;
