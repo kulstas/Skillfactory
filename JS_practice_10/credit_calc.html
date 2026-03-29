@@ -1,0 +1,63 @@
+    <!doctype html>
+    <html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Кредитный калькулятор</title>
+    </head>
+    
+    <body>
+        <ul>
+        <li>если клиенту нет 18 лет, то кредит он не получит</li>
+        <li>если клиенту от 18 до 21, то он может получить максимум 50000</li>
+        <li>если клиенту от 22 до 35, то он сможет получить максимум 400000</li>
+        <li>если клиенту от 36 до 65, то ему одобрят максимум 1000000</li>
+        <li>кредит могут выдавать суммами кратными 10000.</li>
+        </ul>
+    
+        <script>
+            let userAge = prompt("Введити количество полных лет");
+            if (isNaN(userAge)) {
+                alert("Сумма должна быть числом! Попробуйте еще раз.");
+            } else {
+                if (userAge < 18) {
+                    alert("Вам нет 18 лет - в кредите отказано!");
+                } else if(userAge >= 18 && userAge < 22){
+                    let userCredit = prompt("Мы можем выдать Вам максимум 50000\nВведите сумму кратную 1000");
+                    if (userCredit <= 50000 && userCredit % 1000 != 0) {
+                        alert(`Вы ввели значение не кратное 1000. Мы можем выдать ${userCredit - userCredit % 1000}`);
+                    } else if (userCredit && userCredit <= 50000) {
+                        alert(`Вам одобрен кредит ${userCredit} !`);
+                    } else {
+                        alert("Видимо вам кредит не нужен. Всего доброго!");
+                    }
+                } else if(userAge >= 22 && userAge < 36){
+                    let userCredit = prompt("Мы можем выдать Вам максимум 400000\nВведите сумму кратную 1000");
+                    if (userCredit <= 400000 && userCredit % 1000 != 0) {
+                        alert(`Вы ввели значение не кратное 1000. Мы можем выдать ${userCredit - userCredit % 1000}`);
+                    } else if (userCredit && userCredit <= 400000) {
+                        alert(`Вам одобрен кредит ${userCredit} !`);
+                    } else {
+                        alert("Видимо вам кредит не нужен. Всего доброго!");
+                    }
+                } 
+                 else if(userAge >= 36 && userAge < 66){
+                    let userCredit = prompt("Мы можем выдать Вам максимум 1000000\nВведите сумму кратную 1000");
+                    if (userCredit <= 1000000 && userCredit % 1000 != 0) {
+                        alert(`Вы ввели значение не кратное 1000. Мы можем выдать ${userCredit - userCredit % 1000}`);
+                    } else if (userCredit && userCredit <= 1000000) {
+                        alert(`Вам одобрен кредит ${userCredit} !`);
+                    } else {
+                        alert("Видимо вам кредит не нужен. Всего доброго!");
+                    }
+                } else {
+                    alert("Видимо вам кредит не нужен. Всего доброго!");
+                }
+            }
+        </script>
+    </body>
+    
+    </html>
